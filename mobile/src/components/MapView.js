@@ -28,6 +28,7 @@ export default function CustomMapView() {
 
   
   //Accurate Location, but has some viewing issues and performance issues, disabled temporarily
+  //test comment
 
 
   // Location.watchPositionAsync(
