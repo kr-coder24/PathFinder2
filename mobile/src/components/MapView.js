@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Alert} from 'react-native';
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE,Polyline } from 'react-native-maps';
 import * as Location from 'expo-location'
 
 export default function CustomMapView() {
   const [location,setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
+  const [destination, setDestination] = useState(null);
+  const [routeCoords, setRouteCoords] = useState([]);
 
   useEffect(() => {
     (async() => {
@@ -19,6 +21,29 @@ export default function CustomMapView() {
       setLocation(location);
     })();
   },[]);
+
+
+  useEffect(() => {
+    if(destination && location){
+    const origin = `${location.coords.latitude},${location.coords.longitude}`;
+    const dest = `${destination.latitude},${destination.longitude}`;
+
+    fetch(`http://10.58.148.113:8000/route?origin=${origin}&destination=${dest}`)
+    .then(res => res.json())
+    .then(data =>{
+      const coords = data.polyline.map(([lat,lng]) => ({
+        latitude:lat,
+        longitude:lng
+      }));
+      setRouteCoords(coords);
+    })
+    .catch(err => {
+      console.error("Error fetching route: ",err);
+    });
+    }
+  },[destination,location]);
+
+
   const defaultRegion = {
     latitude: 40.7128,
     longitude: -74.0060,
@@ -54,14 +79,32 @@ export default function CustomMapView() {
       region={mapRegion}
       showsUserLocation={true}
       showsMyLocationButton={true}
+      onLongPress={(event) => {
+        const { latitude, longitude } = event.nativeEvent.coordinate;
+        setDestination({ latitude, longitude });
+      }}
     >
-      {location &&(
-      <Marker
-        coordinate={{ latitude: location.coords.latitude, longitude: location.coords.longitude}}
-        title="Your Location"
-        description='IIITA'
-        pinColor='orange'
-      />
+      {location && (
+        <Marker
+          coordinate={{ latitude: location.coords.latitude, longitude: location.coords.longitude }}
+          title="Your Location"
+          description='IIITA'
+          pinColor='orange'
+        />
+      )}
+      {destination && (
+        <Marker
+          coordinate={destination}
+          title="Destination"
+          pinColor="green"
+        />
+      )}
+      {routeCoords.length > 0 && (
+        <Polyline
+          coordinates={routeCoords}
+          strokeColor="blue"
+          strokeWidth={4}
+        />
       )}
     </MapView>
   );

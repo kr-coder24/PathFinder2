@@ -2,7 +2,7 @@
 
 
 
-Pathfinder is an open-source Google Maps overlay that routes drivers, cyclists and pedestrians along \*\*smoother\*\* and \*\*safer\*\* roads and paths.
+Pathfinder is an open-source Google Maps overlay that routes drivers, cyclists and pedestrians along \*\*smoother\*\* and \*\*safer\*\* roads and paths, thinking of adding disaster and accident detection, explicitly.
 
 
 
