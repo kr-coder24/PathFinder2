@@ -1,0 +1,6 @@
+fastapi[all]
+uvicorn
+httpx
+python-dotenv
+polyline
+starlette
