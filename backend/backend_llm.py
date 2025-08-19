@@ -4,10 +4,7 @@ from google import genai
 from google.genai import types
 from typing import List
 
-client = genai.Client()
-
-with open("goodroad.jpeg", "rb") as f:
-    b = f.read()
+client = genai.Client(api_key="YOUR_API_KEY")
 
 def sanitize_gemini_output(output: str) -> str:
     return output[8:-3]

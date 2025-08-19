@@ -28,7 +28,7 @@ export default function CustomMapView() {
     const origin = `${location.coords.latitude},${location.coords.longitude}`;
     const dest = `${destination.latitude},${destination.longitude}`;
 
-    fetch(`http://10.58.148.113:8000/route?origin=${origin}&destination=${dest}`)
+    fetch(`http://10.116.57.113:8000/route?origin=${origin}&destination=${dest}`)
     .then(res => res.json())
     .then(data =>{
       const coords = data.polyline.map(([lat,lng]) => ({

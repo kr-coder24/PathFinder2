@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "mobile",
-    "slug": "mobile", 
+    "slug": "mobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -10,8 +10,13 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "infoPlist":{
-        "NSLocationWhenInUsageDescription":"This app needs location access to show your position on the map."
+      "infoPlist": {
+        "NSLocationWhenInUsageDescription": "This app needs location access to show your position on the map."
+      },
+      "config": { 
+        "googleMaps": {
+          "apiKey": "AIzaSyA-0rcEKWsO3mg1q99jgvfiK18rsedwVqM"
+        }
       }
     },
     "android": {
@@ -20,7 +25,16 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "permissions":["ACCESS_FINE_LOCATION","ACCESS_COARSE_LOCATION"]
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION"
+      ],
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyA-0rcEKWsO3mg1q99jgvfiK18rsedwVqM"
+        }
+      },
+      "package": "com.epic_gaimer.mobile"
     },
     "web": {
       "bundler": "metro",
@@ -37,6 +51,12 @@
           "backgroundColor": "#ffffff"
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "475b9783-843e-4304-ab14-6d2c969150f3"
+      }
+    },
+    "owner": "epic_gaimer"
   }
 }
