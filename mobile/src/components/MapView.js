@@ -8,6 +8,7 @@ export default function CustomMapView() {
   const [errorMsg, setErrorMsg] = useState(null);
   const [destination, setDestination] = useState(null);
   const [routeCoords, setRouteCoords] = useState([]);
+  const API_BASE_URL ='http://10.0.2.2:8000';
 
   useEffect(() => {
     (async() => {
@@ -28,7 +29,7 @@ export default function CustomMapView() {
     const origin = `${location.coords.latitude},${location.coords.longitude}`;
     const dest = `${destination.latitude},${destination.longitude}`;
 
-    fetch(`http://10.116.57.113:8000/route?origin=${origin}&destination=${dest}`)
+    fetch(`${API_BASE_URL}/route?origin=${origin}&destination=${dest}`)
     .then(res => res.json())
     .then(data =>{
       const coords = data.polyline.map(([lat,lng]) => ({

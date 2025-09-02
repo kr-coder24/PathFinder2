@@ -15,5 +15,12 @@ Users crowd-source photos and information about roads which is translated by an 
 
 
 
+How to run:
+run the backend in the backend using: python -m uvicorn main:app --reload
+running front end (android emulator only):
+1.npx expo prebuild
+2.npx expo run:android (android emulator must be running in the background)
+
+
 
 
