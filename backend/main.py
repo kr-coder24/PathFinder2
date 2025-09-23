@@ -19,6 +19,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.post("/api/process-image")
+async def process_image(image: UploadFile = File(...)):
+    image_bytes = await image.read()
+    # Pass the image to the LLM for processing
+    llm_result = backend_llm.process_image_with_llm(image_bytes)
+    print(f"LLM Result: {llm_result}")
+    return {"status": "success", "llm_result": llm_result}
+
 @app.post("/upload")
 async def upload(
     images_bytes: List[UploadFile] = File(...),

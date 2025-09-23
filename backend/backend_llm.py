@@ -2,9 +2,12 @@ import os
 import json
 from google import genai
 from google.genai import types
+from dotenv import load_dotenv
 from typing import List
 
-client = genai.Client(api_key="YOUR_API_KEY")
+load_dotenv()
+API_KEY = os.getenv("GEMINI_KEY")
+client = genai.Client(api_key=API_KEY)
 
 def sanitize_gemini_output(output: str) -> str:
     return output[8:-3]

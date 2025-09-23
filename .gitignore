@@ -2,6 +2,7 @@
 
 # dependencies
 node_modules/
+/node_modules
 
 # Expo
 .expo/
@@ -32,6 +33,8 @@ yarn-error.*
 
 # local env files
 .env*.local
+backend/.env
+mobile/.env
 
 # typescript
 *.tsbuildinfo
@@ -41,3 +44,10 @@ app-example
 #build files
 
 android/
+
+# python
+__pycache__/
+*.pyc
+
+# IDE
+.vscode/
