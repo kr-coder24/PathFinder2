@@ -46,7 +46,7 @@ def get_scores(images: List[dict], text_descr: str) -> dict:
             "traffic_safety_risk": int,
             "ride_discomfort": int,
             "waterlogging": int,
-            "urgency_for_repair": int,
+            "urgency_for_repair": int
         }}
 
         If any category cannot be determined from the provided data, give a reasonable estimate based on available clues.
@@ -58,7 +58,8 @@ def get_scores(images: List[dict], text_descr: str) -> dict:
         model="gemini-2.5-flash",
         contents=arr,
         config=types.GenerateContentConfig(
-            thinking_config=types.ThinkingConfig(thinking_budget=0)
+            thinking_config=types.ThinkingConfig(thinking_budget=0),
+
         )
     )
 

@@ -1,21 +1,29 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import CustomMapView from '../src/components/MapView';
-
-import { Link } from 'expo-router';
+import { useRouter } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function HomeScreen() {
+  const router = useRouter();
+
+  const openCamera = () => {
+    router.push('/camera'); // navigate to camera screen
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>PathFinder</Text>
-      <Link href="/camera" style={styles.cameraButton}>
-        <Text style={styles.cameraButtonText}>Open Camera</Text>
-      </Link>
       <CustomMapView />
+      <TouchableOpacity style={styles.cameraButton} onPress={openCamera}>
+        <Ionicons name="camera" size={28} color="white" />
+      </TouchableOpacity>
     </View>
   );
 }
 
+
+//temporary css styling, will move it later
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -29,14 +37,19 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   cameraButton: {
+    position: 'absolute',
+    bottom: 30,
+    right: 30,
+    width: 70,
+    height: 70,
+    borderRadius: 35,
     backgroundColor: '#007BFF',
-    padding: 10,
-    borderRadius: 5,
-    alignSelf: 'center',
-    marginBottom: 10,
-  },
-  cameraButtonText: {
-    color: '#fff',
-    fontWeight: 'bold',
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOpacity: 0.3,
+    shadowOffset: { width: 0, height: 3 },
+    shadowRadius: 4,
+    elevation: 5, // Android shadow
   },
 });

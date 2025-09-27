@@ -36,6 +36,9 @@ yarn-error.*
 backend/.env
 mobile/.env
 
+#local images
+backend/uploads
+
 # typescript
 *.tsbuildinfo
 
