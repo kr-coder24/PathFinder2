@@ -11,11 +11,12 @@
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
+        "NSCameraUsageDescription": "This app needs camera access to scan and upload images.",
         "NSLocationWhenInUsageDescription": "This app needs location access to show your position on the map."
       },
       "config": { 
         "googleMaps": {
-          "apiKey": "AIzaSyA-0rcEKWsO3mg1q99jgvfiK18rsedwVqM"
+          "apiKey": "AIzaSyBhEJnu0YG161fj0PIptOb2Qpd2pGpWPtw"
         }
       }
     },
@@ -31,7 +32,7 @@
       ],
       "config": {
         "googleMaps": {
-          "apiKey": "AIzaSyA-0rcEKWsO3mg1q99jgvfiK18rsedwVqM"
+          "apiKey": "AIzaSyBhEJnu0YG161fj0PIptOb2Qpd2pGpWPtw"
         }
       },
       "package": "com.epic_gaimer.mobile"
