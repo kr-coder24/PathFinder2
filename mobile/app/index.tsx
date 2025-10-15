@@ -1,55 +1,78 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import CustomMapView from '../src/components/MapView';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import { View, ActivityIndicator, StyleSheet, Text } from 'react-native';
 
-export default function HomeScreen() {
+export default function Index() {
+  const [initializing, setInitializing] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
-  const openCamera = () => {
-    router.push('/camera'); // navigate to camera screen
-  };
+  useEffect(() => {
+    let unsubscribe: (() => void) | undefined;
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>PathFinder</Text>
-      <CustomMapView />
-      <TouchableOpacity style={styles.cameraButton} onPress={openCamera}>
-        <Ionicons name="camera" size={28} color="white" />
-      </TouchableOpacity>
-    </View>
-  );
+    const initializeAuth = async () => {
+      try {
+        const auth = await import('@react-native-firebase/auth');
+        const authInstance = auth.default();
+
+        unsubscribe = authInstance.onAuthStateChanged((user) => {
+          if (user) {
+            router.replace('/home');
+          } else {
+            router.replace('/login');
+          }
+          setInitializing(false);
+        });
+      } catch (err: any) {
+        console.error('Firebase initialization error:', err);
+        setError(err.message || 'Failed to initialize Firebase');
+        setInitializing(false);
+        router.replace('/login');
+      }
+    };
+
+    initializeAuth();
+
+    return () => {
+      if (unsubscribe) {
+        unsubscribe();
+      }
+    };
+  }, []);
+
+  if (error) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.errorText}>Error: {error}</Text>
+        <ActivityIndicator size="large" color="#ff0000" />
+      </View>
+    );
+  }
+
+  if (initializing) {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size="large" color="#007BFF" />
+      </View>
+    );
+  }
+
+  return null;
 }
 
-
-//temporary css styling, will move it later
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginTop: 50,
-    marginBottom: 10,
-  },
-  cameraButton: {
-    position: 'absolute',
-    bottom: 30,
-    right: 30,
-    width: 70,
-    height: 70,
-    borderRadius: 35,
-    backgroundColor: '#007BFF',
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOpacity: 0.3,
-    shadowOffset: { width: 0, height: 3 },
-    shadowRadius: 4,
-    elevation: 5, // Android shadow
+    backgroundColor: '#fff',
+  },
+  errorText: {
+    color: '#ff0000',
+    fontSize: 14,
+    marginBottom: 10,
+    paddingHorizontal: 20,
+    textAlign: 'center',
   },
 });
