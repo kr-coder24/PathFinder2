@@ -2,9 +2,12 @@ import os
 import json
 from google import genai
 from google.genai import types
+from dotenv import load_dotenv
 from typing import List
 
-client = genai.Client(api_key="YOUR_API_KEY")
+load_dotenv()
+API_KEY = os.getenv("GEMINI_API_KEY")
+client = genai.Client(api_key=API_KEY)
 
 def sanitize_gemini_output(output: str) -> str:
     return output[8:-3]
@@ -43,7 +46,7 @@ def get_scores(images: List[dict], text_descr: str) -> dict:
             "traffic_safety_risk": int,
             "ride_discomfort": int,
             "waterlogging": int,
-            "urgency_for_repair": int,
+            "urgency_for_repair": int
         }}
 
         If any category cannot be determined from the provided data, give a reasonable estimate based on available clues.
@@ -55,12 +58,12 @@ def get_scores(images: List[dict], text_descr: str) -> dict:
         model="gemini-2.5-flash",
         contents=arr,
         config=types.GenerateContentConfig(
-            thinking_config=types.ThinkingConfig(thinking_budget=0)
+            thinking_config=types.ThinkingConfig(thinking_budget=0),
+
         )
     )
 
     # print(res.text)
 
     return json.loads(sanitize_gemini_output(res.text))
-
 
