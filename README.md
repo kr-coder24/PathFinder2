@@ -15,6 +15,9 @@ Users crowd-source photos and information about roads which is translated by an 
 
 
 
+Install Dependencies :
+1. Run : npm install
+
 How to run:
 run the backend in the backend using: python -m uvicorn main:app --reload
 running front end (android emulator only):

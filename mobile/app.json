@@ -10,12 +10,14 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
+      "bundleIdentifier": "com.epic_gaimer.mobile",
       "infoPlist": {
+        "NSCameraUsageDescription": "This app needs camera access to scan and upload images.",
         "NSLocationWhenInUsageDescription": "This app needs location access to show your position on the map."
       },
-      "config": { 
+      "config": {
         "googleMaps": {
-          "apiKey": "AIzaSyA-0rcEKWsO3mg1q99jgvfiK18rsedwVqM"
+          "apiKey": "AIzaSyBhEJnu0YG161fj0PIptOb2Qpd2pGpWPtw"
         }
       }
     },
@@ -31,10 +33,11 @@
       ],
       "config": {
         "googleMaps": {
-          "apiKey": "AIzaSyA-0rcEKWsO3mg1q99jgvfiK18rsedwVqM"
+          "apiKey": "AIzaSyBhEJnu0YG161fj0PIptOb2Qpd2pGpWPtw"
         }
       },
-      "package": "com.epic_gaimer.mobile"
+      "package": "com.epic_gaimer.mobile",
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "bundler": "metro",
@@ -50,7 +53,14 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      ["expo-build-properties",{
+          "ios":{
+            "useFrameworks" : "static"
+          }
+      }],
+      "@react-native-firebase/app",
+      "@react-native-firebase/auth"
     ],
     "extra": {
       "eas": {

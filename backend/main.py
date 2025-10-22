@@ -19,6 +19,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.post("/upload")
 async def upload(
     images_bytes: List[UploadFile] = File(...),
