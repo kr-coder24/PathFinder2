@@ -8,3 +8,4 @@ aiofiles
 python-multipart
 google-genai
 psycopg2-binary
+requests
