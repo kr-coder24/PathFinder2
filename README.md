@@ -13,7 +13,9 @@ Users crowd-source photos and information about roads which is translated by an 
 * \*\*Road Quality Index (RQI)\*\* - surface smoothness, potholes, lane markings etc.
 * \*\*Pedestrian Safety Index (PSI)\*\* - safer atmosphere, clear visibility, no danger for getting robbed etc.
 
-
+Set the Environment Variables:
+1. DB_PASSWORD (your postgresql database password)
+2. GEMINI_API_KEY (the gemini api key)
 
 Install Dependencies :
 1. Run : npm install

@@ -14,6 +14,7 @@ class User:
 class Location:
     location_id: str = ""
     images_dir: str = ""
+    images: int = 0
     text_descr: str = ""
     surface_damage: float = 0
     traffic_safety_risk: float = 0

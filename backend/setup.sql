@@ -11,7 +11,7 @@ created_at TIMESTAMP DEFAULT now()
 
 CREATE TABLE location (
 id TEXT PRIMARY KEY,
-posts BIGSERIAL DEFAULT 0
+posts SMALLINT
 );
 
 CREATE TABLE posts (
@@ -19,6 +19,7 @@ id BIGSERIAL PRIMARY KEY,
 posted_by TEXT REFERENCES users (id),
 location_id TEXT REFERENCES location (id),
 images_dir TEXT,
+images SMALLINT,
 text_descr TEXT,
 surface_damage SMALLINT,
 traffic_safety_risk SMALLINT,
@@ -34,7 +35,5 @@ surface_damage FLOAT,
 traffic_safety_risk FLOAT,
 ride_discomfort FLOAT,
 waterlogging FLOAT,
-urgency_for_repair FLOAT,
-overall_score FLOAT,
-posts BIGSERIAL DEFAULT 0
+urgency_for_repair FLOAT
 );
