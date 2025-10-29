@@ -8,6 +8,9 @@ import os
 import backend_llm
 import aiofiles
 import asyncio
+from dotenv import load_dotenv
+
+load_dotenv() 
 
 # requests library to make api calls to Google Roads API
 import requests
@@ -31,7 +34,7 @@ from database import db
 class RequestUserModel(BaseModel):
     id: str
     name: str
-    reputation: str
+    reputation: int  #using integer as a reputation measure for easier calcualtion in the future.
     created_at: str | None = None
 
 class RequestLocationsIDModel(BaseModel):
@@ -48,13 +51,13 @@ app.add_middleware(
 )
 
 try:
-    GOOGLE_ROADS_API_KEY = os.environ['GOOGLE_ROADS_API_KEY'] # set your environment variable in cmd using 'set DB_PASSWORD=roadsAPI123' before running it
+    GOOGLE_ROADS_API_KEY = os.getenv("GOOGLE_API_KEY") #Using .env for consistent results
 except KeyError:
-    raise RuntimeError("Required environment variable GOOGLE_ROADS_API_KEY not found on your system. Set it. It is needed to get location_id from latitude/longitude")
+    raise RuntimeError("Check project environment variables. Set it. It is needed to get location_id from latitude/longitude")
 
 app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 
-GOOGLE_ROADS_API_KEY = os.getenv("GOOGLE_ROADS_API_KEY", "")
+GOOGLE_ROADS_API_KEY = os.getenv("GOOGLE_API_KEY", "") #keep naming as google api key for consistnecy
 
 # endpoint for creating a new user 
 # Example curl:
