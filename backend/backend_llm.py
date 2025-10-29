@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from typing import List
 
 load_dotenv()
-API_KEY = os.getenv("GEMINI_KEY")
+API_KEY = os.getenv("GEMINI_API_KEY")
 client = genai.Client(api_key=API_KEY)
 
 def sanitize_gemini_output(output: str) -> str:
@@ -66,5 +66,4 @@ def get_scores(images: List[dict], text_descr: str) -> dict:
     # print(res.text)
 
     return json.loads(sanitize_gemini_output(res.text))
-
 
