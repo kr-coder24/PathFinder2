@@ -63,7 +63,7 @@ def analyze_damage(image_path: str):
     return detections
 
 
-def get_scores(images, text_descr=""):
+def get_scores_cv(images):
 
     all_detections = []
     for img in images:
@@ -80,14 +80,15 @@ def get_scores(images, text_descr=""):
     traffic_safety_score = compute_traffic_safety_score(all_detections)
     ride_discomfort_score = compute_ride_discomfort_score(all_detections)
     # Waterlogging score from text description if available, otherwise default
-    waterlogging_score = compute_waterlogging_score(text_descr) if text_descr else 0
+    waterlogging_score = compute_waterlogging_score(all_detections)
     urgency_score = compute_urgency_score(all_detections)
     # END OF CHANGES
     
     return {
-        "detections": all_detections,
-        "summary": summary,
-        "total_detections": len(all_detections),
+        #comented out as not needed for now.
+        # "detections": all_detections,
+        # "summary": summary,
+        # "total_detections": len(all_detections),
         "surface_damage": surface_damage_score,
         "traffic_safety_risk": traffic_safety_score,
         "ride_discomfort": ride_discomfort_score,
@@ -172,23 +173,24 @@ def compute_ride_discomfort_score(detections):
 
 
 #Change this to use potholes instead of text.
-def compute_waterlogging_score(text_descr):
-    """
-    Calculate waterlogging score based on text description since it's hard to detect from images
-    """
-    if not text_descr or not isinstance(text_descr, str):
+def compute_waterlogging_score(detections):
+    if len(detections) == 0:
         return 0
+    # All surface damages affect ride comfort
+    comfort_weights = {
+        "D00": 0,   # Longitudinal cracks
+        "D01": 0,
+        "D10": 10,   # Lateral cracks (more jarring)
+        "D11": 8,
+        "D20": 15,  # Alligator cracks (very uncomfortable)
+        "D40": 70,  # Potholes (extremely uncomfortable)
+        "D43": 0,   # Crosswalk blur (minimal comfort impact)
+        "D44": 0    # White line blur (minimal comfort impact)
+    }
     
-    # Look for waterlogging-related keywords in description
-    text_lower = text_descr.lower()
-    waterlogging_keywords = ["waterlog", "water logged", "flood", "puddle", "standing water", "flooded", "water accumulation"]
-    
-    if any(keyword in text_lower for keyword in waterlogging_keywords):
-        return 80  # High score if waterlogging is explicitly mentioned
-    elif "water" in text_lower:
-        return 40  # Medium score if water is mentioned but not clearly waterlogging
-    else:
-        return 0   # No waterlogging detected
+    total_weight = sum(comfort_weights.get(d["class"], 2) * d["confidence"] for d in detections)
+    score = min(100, (total_weight / len(detections)) * 1.8)
+    return round(score, 2)
 
 def compute_urgency_score(detections):
     """
