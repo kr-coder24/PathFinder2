@@ -97,7 +97,7 @@ export default function SearchBar({origin,onOriginChange,destination,onDestinati
  const styles = StyleSheet.create({
       searchContainer: {
         position: 'absolute',
-        top: 110,
+        top: 120,
         left: 15,
         right: 15,
         zIndex: 5,

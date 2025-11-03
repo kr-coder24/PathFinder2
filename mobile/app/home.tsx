@@ -96,10 +96,10 @@ export default function HomeScreen() {
     <View style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity style={styles.userIconButton} onPress={toggleDashboard}>
-          <Ionicons name="person-circle-outline" size={36} color="#007BFF" />
+          <Ionicons name="person-circle-outline" size={28} color="#000" />
         </TouchableOpacity>
         <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
-          <Ionicons name="log-out" size={24} color="#fff" />
+          <Ionicons name="log-out" size={24} color="#000" />
         </TouchableOpacity>
       </View>
 
@@ -126,7 +126,7 @@ export default function HomeScreen() {
 
       <CustomMapView routeRequest={routeRequest}/>
       <TouchableOpacity style={styles.cameraButton} onPress={openCamera}>
-        <Ionicons name="camera" size={28} color="white" />
+        <Ionicons name="camera" size={28} color="#000" />
       </TouchableOpacity>
     </View>
   );
@@ -149,14 +149,22 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     zIndex: 10,
+    backgroundColor: 'transparent',
   },
   userIconButton: {
-    padding: 4,
+    padding: 10,
+    backgroundColor: '#fff',
+    borderRadius: 25,
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 3,
+    elevation: 3,
   },
   logoutButton: {
     padding: 10,
-    backgroundColor: '#007BFF',
-    borderRadius: 20,
+    backgroundColor: '#fff',
+    borderRadius: 25,
     shadowColor: '#000',
     shadowOpacity: 0.2,
     shadowOffset: { width: 0, height: 2 },
@@ -206,7 +214,7 @@ const styles = StyleSheet.create({
     width: 70,
     height: 70,
     borderRadius: 35,
-    backgroundColor: '#007BFF',
+    backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#000',
