@@ -1,33 +1,14 @@
-import React, { useEffect, useState, useRef, forwardRef, useImperativeHandle} from 'react';
+import React, { useEffect, useState, useRef} from 'react';
 import { StyleSheet, Alert} from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE,Polyline } from 'react-native-maps';
 import * as Location from 'expo-location'
 
-const CustomMapView = forwardRef(({routeRequest}, ref) => {
+export default function CustomMapView({routeRequest}) {
   const [location,setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [routeCoords, setRouteCoords] = useState([]);
   const mapRef = useRef(null);
   const API_BASE_URL ='http://10.0.2.2:8000';
-
-  useImperativeHandle(ref, () => ({
-    centerToCurrentLocation: async () => {
-      try {
-        let currentLocation = await Location.getCurrentPositionAsync({});
-        if (mapRef.current && currentLocation) {
-          mapRef.current.animateToRegion({
-            latitude: currentLocation.coords.latitude,
-            longitude: currentLocation.coords.longitude,
-            latitudeDelta: 0.02,
-            longitudeDelta: 0.02,
-          }, 1000);
-        }
-      } catch (error) {
-        console.error("Error centering to location:", error);
-        Alert.alert("Error", "Could not center to your current location");
-      }
-    }
-  }));
 
   useEffect(() => {
     (async() => {
@@ -131,12 +112,10 @@ const CustomMapView = forwardRef(({routeRequest}, ref) => {
       )}
     </MapView>
   );
-});
+}
 
 const styles = StyleSheet.create({
   map: {
     flex: 1,
   },
 });
-
-export default CustomMapView;
