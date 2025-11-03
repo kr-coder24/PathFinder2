@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import CustomMapView from '../src/components/MapView';
 import { useRouter } from 'expo-router';
@@ -15,6 +15,7 @@ export default function HomeScreen() {
     origin: "",
     destination: ""
   });
+  const mapRef = useRef(null);
 
   useEffect(() => {
     (async ()=> {
@@ -43,6 +44,12 @@ export default function HomeScreen() {
 
   const openCamera = () => {
     router.push('/camera');
+  };
+
+  const centerToCurrentLocation = () => {
+    if (mapRef.current) {
+      mapRef.current.centerToCurrentLocation();
+    }
   };
 
   const handleLogout = async () => {
@@ -106,8 +113,8 @@ export default function HomeScreen() {
 
       />
 
-      <CustomMapView routeRequest={routeRequest}/>
-      <TouchableOpacity style={styles.locationButton}>
+      <CustomMapView routeRequest={routeRequest} ref={mapRef}/>
+      <TouchableOpacity style={styles.locationButton} onPress={centerToCurrentLocation}>
         <Ionicons name="locate" size={24} color="#000" />
       </TouchableOpacity>
       <TouchableOpacity style={styles.cameraButton} onPress={openCamera}>
@@ -157,7 +164,7 @@ const styles = StyleSheet.create({
   },
   locationButton: {
     position: 'absolute',
-    bottom: 100,
+    bottom: 30,
     right: 30,
     width: 60,
     height: 60,
@@ -174,7 +181,7 @@ const styles = StyleSheet.create({
   cameraButton: {
     position: 'absolute',
     bottom: 30,
-    right: 30,
+    left: 30,
     width: 70,
     height: 70,
     borderRadius: 35,
