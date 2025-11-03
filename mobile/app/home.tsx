@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import CustomMapView from '../src/components/MapView';
 import { useRouter } from 'expo-router';
@@ -15,6 +15,7 @@ export default function HomeScreen() {
     origin: "",
     destination: ""
   });
+  const mapRef = useRef(null);
 
   useEffect(() => {
     (async ()=> {
@@ -43,6 +44,12 @@ export default function HomeScreen() {
 
   const openCamera = () => {
     router.push('/camera');
+  };
+
+  const centerToCurrentLocation = () => {
+    if (mapRef.current) {
+      mapRef.current.centerToCurrentLocation();
+    }
   };
 
   const handleLogout = async () => {
@@ -91,10 +98,10 @@ export default function HomeScreen() {
     <View style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity style={styles.userIconButton}>
-          <Ionicons name="person-circle-outline" size={28} color="#000" />
+          <Ionicons name="person-circle-outline" size={28} color="#fff" />
         </TouchableOpacity>
         <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
-          <Ionicons name="log-out-outline" size={24} color="#000" />
+          <Ionicons name="log-out-outline" size={24} color="#fff" />
         </TouchableOpacity>
       </View>
       <SearchBar
@@ -106,9 +113,9 @@ export default function HomeScreen() {
 
       />
 
-      <CustomMapView routeRequest={routeRequest}/>
-      <TouchableOpacity style={styles.locationButton}>
-        <Ionicons name="locate" size={24} color="#007BFF" />
+      <CustomMapView routeRequest={routeRequest} ref={mapRef}/>
+      <TouchableOpacity style={styles.locationButton} onPress={centerToCurrentLocation}>
+        <Ionicons name="locate" size={24} color="#000" />
       </TouchableOpacity>
       <TouchableOpacity style={styles.cameraButton} onPress={openCamera}>
         <Ionicons name="camera" size={28} color="#fff" />
@@ -120,7 +127,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#000',
   },
   header: {
     flexDirection: 'row',
@@ -137,7 +144,7 @@ const styles = StyleSheet.create({
   },
   userIconButton: {
     padding: 10,
-    backgroundColor: '#fff',
+    backgroundColor: '#000',
     borderRadius: 25,
     shadowColor: '#000',
     shadowOpacity: 0.2,
@@ -147,7 +154,7 @@ const styles = StyleSheet.create({
   },
   logoutButton: {
     padding: 10,
-    backgroundColor: '#fff',
+    backgroundColor: '#000',
     borderRadius: 25,
     shadowColor: '#000',
     shadowOpacity: 0.2,
@@ -157,7 +164,7 @@ const styles = StyleSheet.create({
   },
   locationButton: {
     position: 'absolute',
-    bottom: 110,
+    bottom: 30,
     right: 30,
     width: 60,
     height: 60,
@@ -174,7 +181,7 @@ const styles = StyleSheet.create({
   cameraButton: {
     position: 'absolute',
     bottom: 30,
-    right: 30,
+    left: 30,
     width: 70,
     height: 70,
     borderRadius: 35,

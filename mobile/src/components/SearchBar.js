@@ -108,11 +108,11 @@ export default function SearchBar({origin,onOriginChange,destination,onDestinati
       },
       input: {
         height: 52,
-        backgroundColor: 'rgba(255, 255, 255, 0.98)',
+        backgroundColor: '#fff',
         paddingHorizontal: 16,
         borderRadius: 12,
         fontSize: 15,
-        color: '#333',
+        color: '#000',
         shadowColor: '#000',
         shadowOpacity: 0.15,
         shadowOffset: { width: 0, height: 3 },
@@ -131,7 +131,7 @@ export default function SearchBar({origin,onOriginChange,destination,onDestinati
         elevation: 5,
       },
       button: {
-        backgroundColor: '#007BFF',
+        backgroundColor: '#000',
         padding: 15,
         borderRadius: 12,
         alignItems: 'center',
@@ -143,7 +143,7 @@ export default function SearchBar({origin,onOriginChange,destination,onDestinati
         elevation: 4,
       },
       buttonText: {
-        color: 'white',
+        color: '#fff',
         fontWeight: 'bold',
         fontSize: 16,
     },
