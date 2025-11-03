@@ -9,7 +9,6 @@ import  SearchBar  from '../src/components/SearchBar';
 export default function HomeScreen() {
   const router = useRouter();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
-  const [showDashboard, setShowDashboard] = useState(false);
   const [origin, setOrigin] = useState('');
   const [destination, setDestination] = useState('');
   const [routeRequest, setRouteRequest] = useState({
@@ -44,10 +43,6 @@ export default function HomeScreen() {
 
   const openCamera = () => {
     router.push('/camera');
-  };
-
-  const toggleDashboard = () => {
-    setShowDashboard(!showDashboard);
   };
 
   const handleLogout = async () => {
@@ -95,38 +90,28 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity style={styles.userIconButton} onPress={toggleDashboard}>
+        <TouchableOpacity style={styles.userIconButton}>
           <Ionicons name="person-circle-outline" size={28} color="#000" />
         </TouchableOpacity>
         <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
-          <Ionicons name="log-out" size={24} color="#000" />
+          <Ionicons name="log-out-outline" size={24} color="#000" />
         </TouchableOpacity>
       </View>
-
-      {showDashboard && (
-        <View style={styles.dashboard}>
-          <Text style={styles.dashboardTitle}>User Dashboard</Text>
-          <Text style={styles.dashboardText}>Profile settings and info coming soon...</Text>
-          <TouchableOpacity
-            style={styles.closeDashboard}
-            onPress={() => setShowDashboard(false)}
-          >
-            <Text style={styles.closeDashboardText}>Close</Text>
-          </TouchableOpacity>
-        </View>
-      )}
-
       <SearchBar
         origin={origin}
         onOriginChange={setOrigin}
         destination={destination}
         onDestinationChange={setDestination}
         onGetRoute={handleGetRoute}
+
       />
 
       <CustomMapView routeRequest={routeRequest}/>
+      <TouchableOpacity style={styles.locationButton}>
+        <Ionicons name="locate" size={24} color="#007BFF" />
+      </TouchableOpacity>
       <TouchableOpacity style={styles.cameraButton} onPress={openCamera}>
-        <Ionicons name="camera" size={28} color="#000" />
+        <Ionicons name="camera" size={28} color="#fff" />
       </TouchableOpacity>
     </View>
   );
@@ -149,7 +134,6 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     zIndex: 10,
-    backgroundColor: 'transparent',
   },
   userIconButton: {
     padding: 10,
@@ -171,41 +155,21 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 3,
   },
-  dashboard: {
+  locationButton: {
     position: 'absolute',
-    top: 100,
-    left: 20,
-    right: 20,
+    bottom: 110,
+    right: 30,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
     backgroundColor: '#fff',
-    borderRadius: 12,
-    padding: 20,
-    zIndex: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
     shadowColor: '#000',
     shadowOpacity: 0.3,
-    shadowOffset: { width: 0, height: 4 },
-    shadowRadius: 8,
-    elevation: 8,
-  },
-  dashboardTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 10,
-    color: '#333',
-  },
-  dashboardText: {
-    fontSize: 14,
-    color: '#666',
-    marginBottom: 15,
-  },
-  closeDashboard: {
-    backgroundColor: '#007BFF',
-    padding: 10,
-    borderRadius: 8,
-    alignItems: 'center',
-  },
-  closeDashboardText: {
-    color: '#fff',
-    fontWeight: 'bold',
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+    elevation: 5,
   },
   cameraButton: {
     position: 'absolute',
@@ -214,7 +178,7 @@ const styles = StyleSheet.create({
     width: 70,
     height: 70,
     borderRadius: 35,
-    backgroundColor: '#fff',
+    backgroundColor: '#000',
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#000',
