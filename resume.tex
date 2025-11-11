@@ -1,0 +1,279 @@
+%-------------------------
+% Resume in Latex
+% Author
+% License : MIT
+%------------------------
+
+%---- Required Packages and Functions ----
+
+\documentclass[a4paper,10pt]{article}
+\usepackage{latexsym}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage[empty]{fullpage}
+\usepackage{wrapfig}
+\usepackage{lipsum}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{geometry}
+\usepackage{marvosym}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{cfr-lm}
+\usepackage[T1]{fontenc}
+\setlength{\multicolsep}{0pt}
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\geometry{left=1.4cm, top=0.8cm, right=1.2cm, bottom=1cm}
+% Adjust margins
+%\addtolength{\oddsidemargin}{-0.5in}
+%\addtolength{\evensidemargin}{-0.5in}
+%\addtolength{\textwidth}{1in}
+\usepackage[most]{tcolorbox}
+\tcbset{
+	frame code={}
+	center title,
+	left=0pt,
+	right=0pt,
+	top=0pt,
+	bottom=0pt,
+	colback=gray!20,
+	colframe=white,
+	width=\dimexpr\textwidth\relax,
+	enlarge left by=-2mm,
+	boxsep=4pt,
+	arc=0pt,outer arc=0pt,
+}
+
+\urlstyle{same}
+
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item{
+    \textbf{#1}{\hspace{0.5mm}#2 \vspace{-0.5mm}}
+  }
+}
+
+\newcommand{\resumePOR}[3]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1}\hspace{0.3mm}#2 & \textit{\small{#3}}
+    \end{tabular*}
+    \vspace{-2mm}
+}
+
+\newcommand{\resumeSubheading}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#4}} \\
+        \textit{\footnotesize{#3}} &  \footnotesize{#2}\\
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeProject}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#3}} \\
+        \footnotesize{\textit{#2}} & \footnotesize{#4}
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+% \renewcommand{\labelitemii}{$\circ$}
+\renewcommand{\labelitemi}{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*,labelsep=0mm]}
+\newcommand{\resumeHeadingSkillStart}{\begin{itemize}[leftmargin=*,itemsep=1.7mm, rightmargin=2ex]}
+\newcommand{\resumeItemListStart}{\begin{justify}\begin{itemize}[leftmargin=3ex, rightmargin=2ex, noitemsep,labelsep=1.2mm,itemsep=0mm]\small}
+
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{2mm}}
+\newcommand{\resumeHeadingSkillEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\end{justify}\vspace{-2mm}}
+\newcommand{\cvsection}[1]{%
+\vspace{2mm}
+\begin{tcolorbox}
+    \textbf{\large #1}
+\end{tcolorbox}
+    \vspace{-4mm}
+}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}%
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}%
+\newcolumntype{C}{>{\centering\arraybackslash}X}%
+%---- End of Packages and Functions ------
+
+%-------------------------------------------
+%%%%%%  CV STARTS HERE  %%%%%%%%%%%
+%%%%%% DEFINE ELEMENTS HERE %%%%%%%
+\newcommand{\name}{Shivam Kumar} % Your Name
+\newcommand{\course}{B.Tech in Information Technology} % Your Program
+\newcommand{\roll}{IIT2024165} % Your Roll No.
+\newcommand{\phone}{7217772595} % Your Phone Number
+\newcommand{\emaila}{kr.shivam0311@gmail.com} %Email 1
+\newcommand{\emailb}{iit2024165@iiita.ac.in} %Email 2
+
+
+
+
+\begin{document}
+\fontfamily{cmr}\selectfont
+%----------HEADING-----------------
+
+
+\parbox{2.35cm}{%
+\includegraphics[width=2.3cm,clip]{IIITA_LOGO.png}
+}
+\parbox{\dimexpr\linewidth-2.8cm\relax}{
+\begin{tabularx}{\linewidth}{L r} \\
+  \textbf{\Large \name} & {\raisebox{0.0\height}{\footnotesize \faPhone}\ +91-\phone}\\
+  {Roll No.: \roll} & \href{mailto:\emaila}{\raisebox{0.0\height}{\footnotesize \faEnvelope}\ {\emaila}} \\
+  \course &  \href{mailto:\emailb}{\raisebox{0.0\height}{\footnotesize \faEnvelope}\ {\emailb}}\\{Indian Institute Of Information Technology, Allahabad} & \href{https://github.com/kr-coder24}{\raisebox{0.0\height}{\footnotesize \faGithub}\ {GitHub Profile}} \\
+  & \href{https://www.linkedin.com/in/shivam-kumar-154390324/}{\raisebox{0.0\height}{\footnotesize \faLinkedin}\ {LinkedIn Profile}}
+\end{tabularx}
+}
+% \parbox{3.0cm}{%
+% \flushright \includegraphics[width=2cm,clip]{nitp_logo.png}
+% }
+
+
+
+
+%-----------EDUCATION-----------
+\section{\textbf{Education}}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Indian Institute of Information Technology, Allahabad}{CGPA: 8.43}
+      {B.Tech in Information Technology}{2024-Present}
+    \resumeSubheading
+      {Evergreen Public School,Delhi}{Percentage: 94.6}
+      {Central Board of Secondary Education, Delhi}{2022-2024}
+    \resumeSubheading
+      {Evergreen Public School,Delhi}{Percentage: 97}
+      {Central Board of Secondary Education, Delhi}{2020-2022}
+  \resumeSubHeadingListEnd
+\vspace{-5.5mm}
+%
+
+
+
+%-----------EXPERIENCE-----------------
+
+%-----------PROJECTS-----------------
+\section{\textbf{Personal Projects}}
+\resumeSubHeadingListStart
+
+\resumeProject
+  {PathFinder - AI-Powered Road Safety Navigation} %Project Name
+  {\href{https://github.com/kr-coder24}{\raisebox{0.0ex}{\footnotesize \faGithub}}} %GitHub Link
+  {November 2024 - Present} %Event Dates
+
+  \resumeItemListStart
+    \item {Tech Stack: React Native, FastAPI, Python, PostgreSQL, TensorFlow, Google Gemini AI, Firebase, Google Maps API}
+    \item {Full-stack mobile app for crowdsourced road condition data and safer route recommendations}
+    \item {Hybrid AI pipeline combining \textbf{TensorFlow SSD MobileNet} for visual defect detection and \textbf{Gemini AI} for multimodal analysis}
+    \item {RESTful backend handling authentication, image uploads, location queries, and route optimization with PostgreSQL}
+    \item {5-metric scoring system for surface damage, safety risk, discomfort, waterlogging, and repair urgency}
+\resumeItemListEnd
+\vspace{-2mm}
+
+\resumeProject
+  {FocusFlow - Modern Pomodoro Timer} %Project Name
+  {\href{https://github.com/kr-coder24/focusflow-timer}{\raisebox{0.0ex}{\footnotesize \faGithub}} \quad \href{https://focusflow-tracker.netlify.app/}{\raisebox{0.0ex}{\footnotesize \faExternalLink*}} Live} %GitHub and Live Links
+  {June 2025} %Event Dates
+
+  \resumeItemListStart
+    \item {Tech Stack: React.js, JavaScript, Tailwind CSS, Vite, API Ninjas}
+    \item {Modern Pomodoro timer with glassmorphism design, dark/light theme toggle, and sound effects}
+    \item {Auto-session management with focus (25min) and break periods featuring audio notifications}
+    \item {Integrated quotes API, desktop notifications, progress tracking, and responsive design}
+\resumeItemListEnd
+\vspace{-2mm}
+
+
+
+  \resumeSubHeadingListEnd
+\vspace{-5.5mm}
+
+
+
+%-----------Technical skills-----------------
+\section{\textbf{Technical Skills and Interests}}
+ \begin{itemize}[leftmargin=0.05in, label={}]
+    \small{\item{
+     \textbf{Languages}{: C/C++, Python, Javascript, HTML/CSS, SQL} \\
+     \textbf{Developer Tools}{: VSCode, Git, Github, Windows CMD, Bash} \\
+     \textbf{Frameworks}{: React.js, Node.js, Numpy, Pandas} \\
+     \textbf{Cloud/Databases}{: MySQL} \\
+     \textbf{Soft Skills}{: Communication, Problem Solving, Analytical Thinking, Teamwork} \\
+     \textbf{Coursework}{: Data Structures and Algorithms, Computer Organization and Architecture, Web Development} \\
+     \textbf{Areas of Interest}{: Full-Stack Web Development, Data Science and Analysis, Competitive Programming} \\
+    }}
+ \end{itemize}
+ \vspace{-16pt}
+
+
+
+%-----------Positions of Responsibility-----------------
+\section{\textbf{Positions of Responsibility}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+\resumePOR{Member, } % Position
+    {Sarasva(Literary Society)} %Club,Event
+    {2024-Present} %Tenure Period
+
+\resumeSubHeadingListEnd
+\vspace{-5mm}
+
+
+
+
+%-----------Achievements-----------------
+\section{\textbf{Achievements}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+\resumeSubItem{\textbf{CodeChef Max Rating: 1486 (2 Star) | kr\_shivam06} \href{https://www.codechef.com/users/kr_shivam06}{\faExternalLink*} \\
+\normalfont Achieved global ranks of \textbf{703rd} in Starters 178 and \textbf{994th} in Starters 162}
+
+\resumeSubItem{\textbf{Codeforces Max Rating: 1191 | abd2424} \href{https://codeforces.com/profile/abd2424}{\faExternalLink*}}
+
+\resumeSubItem{\textbf{Reliance Foundation Undergraduate Scholarship 2024 Recipient} \\
+\normalfont Selected among 5,000 meritorious students nationwide across all academic domains for undergraduate excellence}
+
+\resumeSubItem{\textbf{Student Upskilling Launchpad Program by Google} \\
+\normalfont Selected and participated in a student-focused upskilling initiative by Google, designed to enhance technical and professional skills through workshops.}
+
+\resumeSubItem{\textbf{JEE Mains-2024 All India Rank 3687} \\
+\normalfont Secured 99.77th percentile among 1.23 million candidates in the national engineering entrance examination}
+
+\resumeSubItem{\textbf{Solved 500+ Algorithmic Problems} \\
+\normalfont Demonstrated proficiency across multiple competitive programming platforms including Codeforces, CodeChef, and LeetCode}
+
+
+\resumeSubHeadingListEnd
+\vspace{-5mm}
+
+
+
+%-------------------------------------------
+\end{document}
